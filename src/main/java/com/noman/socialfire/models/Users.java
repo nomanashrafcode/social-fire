@@ -1,7 +1,6 @@
 package com.noman.socialfire.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,7 @@ import java.util.List;
 @Entity
 public class Users {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private  String FirstName;
     private  String LastName;
@@ -17,9 +17,12 @@ public class Users {
 
     private List<Integer> Followers=new ArrayList<>();
     private List<Integer> Following=new ArrayList<>();
-    private String Gender;
 
-    public Users(Integer id, String firstName, String lastName, String email, String password, List<Integer> followers, List<Integer> following, String gender) {
+    private String Gender;
+    @ManyToMany
+    private List<Post>savedpost=new ArrayList();
+
+    public Users(Integer id, String firstName, String lastName, String email, String password, List<Integer> followers, List<Integer> following, String gender, List<Post> savedpost) {
         this.id = id;
         FirstName = firstName;
         LastName = lastName;
@@ -28,7 +31,10 @@ public class Users {
         Followers = followers;
         Following = following;
         Gender = gender;
+        this.savedpost = savedpost;
     }
+
+
 
     public Integer getId() {
         return id;
@@ -93,5 +99,15 @@ public class Users {
     public void setGender(String gender) {
         Gender = gender;
     }
+
+
+    public List<Post> getSavedpost() {
+        return savedpost;
+    }
+
+    public void setSavedpost(List<Post> savedpost) {
+        this.savedpost = savedpost;
+    }
+
     public Users(){}
 }
