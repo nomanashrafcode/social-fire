@@ -1,5 +1,6 @@
 package com.noman.socialfire.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class Users {
     private List<Integer> Following=new ArrayList<>();
 
     private String Gender;
+    @JsonIgnore
     @ManyToMany
     private List<Post>savedpost=new ArrayList();
 

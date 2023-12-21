@@ -72,11 +72,8 @@ public class PostServiceImplementation implements PostService{
         if (user.getSavedpost().contains(post)){
             user.getSavedpost().remove(post);
         }
-        else {
-            user.getSavedpost().remove(post);
-        }
-
-         userRepository.save(user);
+        else user.getSavedpost().add(post);
+        userRepository.save(user);
         return post;
     }
 

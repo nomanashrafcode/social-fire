@@ -1,5 +1,6 @@
 package com.noman.socialfire.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public class Post {
     private String caption;
     private String image;
     private String video;
+
     @ManyToOne
     private Users user;
     private LocalDateTime createdAt;
